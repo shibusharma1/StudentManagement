@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
+use function Laravel\Prompts\search;
+
 class StudentController extends Controller
 {
     /**
@@ -13,16 +15,36 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return inertia('Students/Index');
+        $students = Student::all();
+        return inertia('Students/Index', [
+            'students' => $students
+        ]);
     }
 
-    public function withDataParameter($name = 'shibu' , $position='developer'){
+    public function withDataParameter(Request $request)
+    {
         sleep(2);
-        return Inertia::render('Students/Index',[
-                'Name' => $name,
-                'Position' => $position
+        // return Inertia::render('Students/Index',[
+        //         'Name' => $name,
+        //         'Position' => $position
+        // ]);
+        $search = $request->input('search');
+        $sortField = $request->input('sort','id');
+        $sortDirection = $request->input('direction','desc');
+        $students = Student::when($search,function($query,$search){
+            $query->where('name','like',"%{$search}%")
+            ->orWhere('email','like',"%{$search}%");
+            
+        })
+        ->orderBy($sortField,$sortDirection)
+        ->paginate(10)
+        ->withQueryString();
+        return inertia('Students/Index', [
+            'students' => $students,
+            'search' => $search,
+            'sort' => $sortField,
+            'direction' =>$sortDirection
         ]);
-
     }
 
     /**
