@@ -12,7 +12,7 @@ i18n
         hi : {translation: hi},
         ne : {translation: ne},
         },
-        lng: "ne",        // default language
+        lng: "en",        // default language
         fallbackLng: "en",
         interpolation: {
             escapeValue: false,
