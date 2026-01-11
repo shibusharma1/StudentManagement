@@ -12,7 +12,7 @@ i18n
         hi : {translation: hi},
         ne : {translation: ne},
         },
-        lng: "en",        // default language
+        lng: localStorage.getItem('lang') || "en",        // default language
         fallbackLng: "en",
         interpolation: {
             escapeValue: false,
