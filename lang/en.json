@@ -1,0 +1,16 @@
+{
+    "students": "Students",
+  "teachers": "Teachers",
+
+  "teachers_page": "Teachers Page",
+  "teachers_welcome": "Welcome to the teacher management section",
+  "teachers_description": "Here you can manage teacher data, view details, and edit data",
+
+  "students_page": "Students Page",
+  "students_welcome": "Welcome to the student management section",
+  "students_description": "Here you can manage student data, view details, and edit data",
+
+  "name": "Name",
+  "position": "Position",
+  "user_name_is": "The User Name is"
+}
