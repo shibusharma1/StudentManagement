@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
     const { url } = usePage();
-    const { t, i18n } = useTranslation();
+    const lang = localStorage.getItem("lang") || "en";
+    const { t } = useTranslation();
 
     const baseLinkClasses = "block p-2 rounded transition-colors duration-200";
     const activeClasses = "bg-blue-100 text-blue-700 font-semibold";
@@ -15,9 +16,9 @@ export default function Sidebar() {
             <ul className="space-y-2">
                 <li>
                     <Link
-                        href="/students"
+                        href={`/students?lang=${lang}`}
                         className={`${baseLinkClasses} ${
-                            url.startsWith("/students")
+                            url.startsWith(`/students`)
                                 ? activeClasses
                                 : inactiveClasses
                         }`}
@@ -28,9 +29,9 @@ export default function Sidebar() {
 
                 <li>
                     <Link
-                        href="/teachers"
+                        href={`/teachers?lang=${lang}`}
                         className={`${baseLinkClasses} ${
-                            url.startsWith("/teachers")
+                            url.startsWith(`/teachers`)
                                 ? activeClasses
                                 : inactiveClasses
                         }`}
